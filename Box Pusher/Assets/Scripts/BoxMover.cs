@@ -24,15 +24,20 @@ public class BoxMover : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision other) {
-        Debug.Log(other.transform.position);
-        Debug.Log(transform.position);
+        if (other.gameObject.name == "perimeter") { 
+            boxPushed = false; 
+            Debug.Log("Perimeter hit");
+        } else if (other.gameObject.name == "Player") {
+            // Debug.Log(other.transform.position);
+            // Debug.Log(transform.position);
 
-        targetPosition = other.transform.position - transform.position;
-        targetPosition = transform.position + (targetPosition * -1);
-        targetPosition = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
-        Debug.Log(targetPosition);
+            targetPosition = other.transform.position - transform.position;
+            targetPosition = transform.position + (targetPosition * -1);
+            targetPosition = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+            // Debug.Log(targetPosition);
 
-        boxPushed = true;
+            boxPushed = true;
+        }
     }
 
     void OnCollisionExit(Collision other) {

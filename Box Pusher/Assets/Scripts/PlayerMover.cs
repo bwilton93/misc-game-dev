@@ -27,4 +27,10 @@ public class PlayerMover : MonoBehaviour {
             transform.Rotate(Vector3.up * 100f * Time.deltaTime);
         }
     }
+
+    void OnCollisionEnter(Collision other) {
+        if (other.gameObject.name == "perimeter") {
+            transform.position = new Vector3(transform.position.x, transform.position.y + (other.transform.position.y * 2), transform.position.z);
+        }
+    }
 }
